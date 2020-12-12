@@ -1,0 +1,37 @@
+overblog_graphql:
+    services:
+        promise_adapter: "webonyx_graphql.sync_promise_adapter"
+    definitions:
+        # disable listener the bundle out of box classLoader
+        use_classloader_listener: false
+        # To generate types manually, see "graphql:compile" command.
+        auto_compile: false
+        config_validation: false
+        # change classes cache dir (recommends using a directory that will be committed)
+        cache_dir: "%kernel.project_dir%/var/autogen/graphql"
+        # Can also change the namespace
+        class_namespace: "Overblog\\GraphQLBundle\\Definitions"
+        schema:
+            main:
+                query: Query
+                resolver_maps:
+                    - App\Post\Resolver\PostResolver
+                    - App\Person\Resolver\LinkedPersonResolver
+                    - App\Comment\Resolver\LinkedCommentResolver
+        mappings:
+            auto_discover: false
+            types:
+                -
+                    type: graphql
+                    dir: "%kernel.project_dir%/config/graphql/types"
+                    suffix: null
+
+overblog_dataloader:
+    defaults:
+        # required
+        promise_adapter: "overblog_dataloader.webonyx_graphql_sync_promise_adapter"
+        options:
+            batch: true
+            cache: true
+            max_batch_size: 100
+            cache_map: "overblog_dataloader.cache_map"

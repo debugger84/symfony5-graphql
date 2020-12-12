@@ -1,0 +1,1 @@
+{"query":"{  posts(first: 3, after: \"\") {    edges {      cursor      node {        id        content,        owner{id,name},        lastComments(count:2){id, content, createdAt,           author{id, name}}      }    }    pageInfo {      hasNextPage,      endCursor,      startCursor    }  }}", "variables": {  }}

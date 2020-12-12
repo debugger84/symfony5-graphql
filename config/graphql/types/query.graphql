@@ -1,0 +1,34 @@
+type Query {
+    posts(first: Int, after: String): PostList
+}
+
+type PostList {
+    edges: [PostEdge!]!
+    pageInfo: PageInfo!
+    totalCount: Int!
+}
+
+type PostEdge {
+    cursor: String!
+    node: Post!
+}
+
+type Post {
+    id: String!
+    content: String!
+    lastComments(count: Int!): [Comment!]!
+    owner: Person!
+}
+
+type Comment {
+    id: String!
+    content: String!
+    createdAt: String!
+    author: Person!
+}
+
+type Person {
+    id: String!
+    name: String!
+}
+

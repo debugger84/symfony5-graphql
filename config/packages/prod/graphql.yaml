@@ -1,0 +1,6 @@
+overblog_graphql:
+    definitions:
+        # disable listener the bundle out of box classLoader
+        use_classloader_listener: false
+        # To generate types manually, see "graphql:compile" command.
+        auto_compile: false
